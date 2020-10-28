@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class ChangeWeapon : MonoBehaviour
 {
@@ -10,37 +11,52 @@ public class ChangeWeapon : MonoBehaviour
     private Arma arma;
     public Metralleta metralleta;
 
+    public bool hasMetralleta;
+
+
     // Start is called before the first frame update
     void Start()
     {
         SelectWeapon();
         arma = GameObject.FindGameObjectWithTag("Arma").GetComponent<Arma>();
         //metralleta = GameObject.FindGameObjectWithTag("Metralleta").GetComponent<Metralleta>();
+        hasMetralleta = false;
+
     }
 
     // Update is called once per frame
     public void Change()
     {
-        int previousSelectedWeapon = currentWeapon;
 
-        if (currentWeapon >= transform.childCount - 1 && arma.reloading == false && metralleta.reloading == false)
+        if (hasMetralleta == true)
         {
-            currentWeapon = 0;
+            int previousSelectedWeapon = currentWeapon;
+
+            if (currentWeapon >= transform.childCount - 1 && arma.reloading == false && metralleta.reloading == false)
+            {
+                currentWeapon = 0;
+            }
+
+            else
+            {
+                if (arma.reloading == false && metralleta.reloading == false)
+                {
+                    currentWeapon++;
+
+                }
+            }
+
+            if (previousSelectedWeapon != currentWeapon && arma.reloading == false && metralleta.reloading == false)
+            {
+                SelectWeapon();
+            }
         }
 
         else
         {
-            if (arma.reloading == false && metralleta.reloading == false)
-            {
-                currentWeapon++;
-
-            }
+            return;
         }
 
-        if (previousSelectedWeapon != currentWeapon && arma.reloading == false && metralleta.reloading == false)
-        {
-            SelectWeapon();
-        }
 
     }
 

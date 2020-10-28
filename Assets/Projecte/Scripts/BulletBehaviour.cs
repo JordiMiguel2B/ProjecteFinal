@@ -5,7 +5,7 @@ using UnityEngine;
 public class BulletBehaviour : MonoBehaviour
 {
     public float speed = 30f;
-    public float range;
+    private float range;
     public float maxRange;
     public float damage = 1;
 
@@ -35,20 +35,18 @@ public class BulletBehaviour : MonoBehaviour
         }
     }
 
-    public void OnTriggerExit(Collider collision)
-    {
-        if (collision.tag == "Boundaries")
-        {
-            Destroy(gameObject);
-        }
-    }
+    //public void OnTriggerExit(Collider collision)
+    //{
+    //    if (collision.tag == "Boundaries")
+    //    {
+    //        Destroy(gameObject);
+    //    }
+    //}
 
     public void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Ground")
-        {
-           
-           
+        {      
             Destroy(gameObject);
         }
 

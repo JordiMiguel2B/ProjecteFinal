@@ -18,7 +18,6 @@ public class Arma : MonoBehaviour
 
     private float timeCounter;
     public float cadency = 0.2f;
-    public float damage = 1;
     public float ammo = 10;
     private float maxAmmo = 10;
     public float reloadTime = 3;
@@ -145,7 +144,9 @@ public class Arma : MonoBehaviour
         if (manager.pause == false && reloading == false)
         {
             shoot = false;
-            GameObject bulletObject = Instantiate(shootGO, transform.position, Quaternion.identity) as GameObject;
+            //GameObject bulletObject = Instantiate(shootGO, transform.position, Quaternion.identity) as GameObject;
+            GameObject bulletObject = Instantiate(shootGO, transform.position, Quaternion.identity);
+            bulletObject.GetComponent<Rigidbody>().AddForce(transform.forward * 0.5f);
             bulletObject.transform.forward = mainCamera.transform.forward;
             ammo--;
             hud.SetAmmoText(ammo);

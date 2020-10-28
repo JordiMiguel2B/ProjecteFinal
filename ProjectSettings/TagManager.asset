@@ -16,6 +16,7 @@ TagManager:
   - Metralleta
   - Slider
   - Holder
+  - DesblokMetralleta
   layers:
   - Default
   - TransparentFX

@@ -13,6 +13,8 @@ public class HUD : MonoBehaviour
     public GameObject hudMetralleta;
     private ChangeWeapon change;
     public Slider playerLife;
+    public Image leftDash;
+    public Image misil;
    
 
     public void Awake()
@@ -61,4 +63,19 @@ public class HUD : MonoBehaviour
     {
         pausePanel.SetActive(pause);
     }
+
+    public void AlphaMisilNormal()
+    {
+        Color c = misil.color;
+        c.a = 1;
+        misil.color = c;
+    }
+
+    public void AlphaMisilTransp()
+    {
+        Color c = misil.color;
+        c.a = 0.6f;
+        misil.color = c;
+    }
+
 }
